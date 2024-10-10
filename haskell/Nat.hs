@@ -14,6 +14,10 @@ so = S o
 sso = S so
 ssso = S sso
 
+pred :: Nat -> Nat
+pred O = O
+pred (S n) = n
+
 plus :: Nat -> Nat -> Nat
 plus n O = n
 plus n (S m) = S (plus n m)
@@ -31,5 +35,8 @@ times n (S m) = times n m + n
 (^) :: Nat -> Nat -> Nat 
 n ^ O = S O
 m ^ (S n) = (m ^ n) * m 
+
+double :: Nat -> Nat
+double n = times n sso
 
         
