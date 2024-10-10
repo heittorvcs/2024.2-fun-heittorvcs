@@ -1,7 +1,7 @@
 module Nat where
 
 import Prelude hiding
-    (Num(..), (^))
+    (Num(..), (^), pred, min, max)
 
 data Nat where 
         O :: Nat
@@ -39,4 +39,24 @@ m ^ (S n) = (m ^ n) * m
 double :: Nat -> Nat
 double n = times n sso
 
-        
+fact :: Nat -> Nat
+fact O = so
+fact n = fact (pred n) * n
+
+fib :: Nat -> Nat
+fib O = S O
+fib (S O) = S O
+fib n = n + fib (pred n)
+
+min :: (Nat,Nat) -> Nat
+min (m,O) = O 
+min (O,n) = O
+min (S m,S n) = S (min(m, n)) 
+
+max :: (Nat, Nat) -> Nat
+max (m,O) = m
+max (O,n) = n 
+max (S m,S n) = S (max(m,n))
+
+
+
