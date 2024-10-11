@@ -1,18 +1,19 @@
 module Nat where
 
 import Prelude hiding
-    (Num(..), (^), pred, min, max)
+    (Num(..), (^), (>), (>=), quot, pred, min, max, rem)
 
 data Nat where 
         O :: Nat
         S :: Nat -> Nat
     deriving (Eq, Show)
 
-o, so, sso, ssso :: Nat
+o, so, sso, ssso, sssso :: Nat
 o = O
 so = S o
 sso = S so
 ssso = S sso
+sssso = S ssso
 
 pred :: Nat -> Nat
 pred O = O
@@ -58,5 +59,29 @@ max (m,O) = m
 max (O,n) = n 
 max (S m,S n) = S (max(m,n))
 
+monus :: Nat -> Nat -> Nat
+monus O n = O
+monus n O = n
+monus m n = monus (pred m) (pred n)
+
+(>) :: Nat -> Nat -> Bool
+O > O = False
+n > O = True
+O > n = False
+S n > S m = n > m
+                    
+quot :: (Nat, Nat) -> Nat
+quot (O, n) = O
+quot (n, O) = error "impossivel dividir por O"
+quot (n, S O) = n
+quot (m,n) = if n > m then O else S(quot(monus m n, n))
+                                            
+rem :: (Nat, Nat) -> Nat
+rem (O, n) = O
+rem (n, O) = error "impossivel dividir por O"
+rem (m, n) = monus(quot (m, n) * n) m
+
+div :: (Nat, Nat) -> (Nat,Nat)  
+div (m,n) = (quot(m,n), rem(m,n))
 
 
