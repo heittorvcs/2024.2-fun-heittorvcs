@@ -1,8 +1,9 @@
 module Nat where
 
 import Prelude hiding
-    (Num(..), (^), (>), (>=), quot, pred, min, max, rem)
+    (Num(..), Bool(..), (^), (>), (>=), quot, pred, min, max, rem)
 
+import Bool
 data Nat where 
         O :: Nat
         S :: Nat -> Nat
@@ -74,7 +75,7 @@ quot :: (Nat, Nat) -> Nat
 quot (O, n) = O
 quot (n, O) = error "impossivel dividir por O"
 quot (n, S O) = n
-quot (m,n) = if n > m then O else S(quot(monus m n, n))
+quot (m,n) = ifthenelse (n > m) O (S(quot(monus m n, n)))
                                             
 rem :: (Nat, Nat) -> Nat
 rem (O, n) = O
