@@ -1,8 +1,6 @@
 module Bool where
 
 import Prelude hiding (Bool(..))
-import GHC.TypeLits (Nat)
-import Text.XHtml (base)
 
 data Bool where
        True :: Bool

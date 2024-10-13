@@ -1,7 +1,7 @@
 module Nat where
 
 import Prelude hiding
-    (Num(..), Bool(..), (^), (>), (>=), quot, pred, min, max, rem)
+    (Num(..), Bool(..), (^), (>), (>=), quot, pred, min, max, rem, lcm, gcd)
 
 import Bool
 data Nat where 
@@ -48,7 +48,7 @@ fact n = fact (pred n) * n
 fib :: Nat -> Nat
 fib O = S O
 fib (S O) = S O
-fib n = n + fib (pred n)
+fib (S n) = fib(n) + fib (pred n)
 
 min :: (Nat,Nat) -> Nat
 min (m,O) = O 
@@ -84,5 +84,13 @@ rem (m, n) = monus(quot (m, n) * n) m
 
 div :: (Nat, Nat) -> (Nat,Nat)  
 div (m,n) = (quot(m,n), rem(m,n))
+
+lcm :: (Nat, Nat) -> Nat
+lcm(m,n) = quot(m * n, gcd(m,n) )
+
+gcd :: (Nat, Nat) -> Nat
+gcd(O, n) = n 
+gcd(S O, n) = so
+gcd(m, n) = gcd (n, rem(m,n))
 
 
